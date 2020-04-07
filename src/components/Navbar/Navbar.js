@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <div>
             <header className="header">
-                <nav className="navbar navbar-expand-lg fixed-top py-3" >
+                <nav className="navbar navbar-expand-lg fixed-top py-3" >   {/* fixed-top */}
                     <div className="container">
                         {/* 
                         <a href="#" className="navbar-brand text-uppercase font-weight-bold">

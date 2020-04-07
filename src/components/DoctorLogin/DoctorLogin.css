@@ -1,0 +1,57 @@
+.loginCustomDiv2 img {
+    width: 100%;
+}
+
+.customLoginDiv {
+    /* width: 100%; */
+    box-shadow: 0 5px 10px 0px darkgray;
+}
+
+.customLoginDiv:hover {
+    transform: scale(1.15);
+}
+
+.loginCustomDiv1 {}
+
+.loginCustomDiv2 {
+    padding-top: 150px;
+}
+
+.customLoginCard {
+    padding: 20px 10px;
+}
+
+.loginInput {
+    /* width: fit-content; */
+    width: 120%;
+}
+
+.doctorLoginForm {
+    padding: 30px 100px;
+}
+
+.doctorLoginForm input {
+    border: none;
+    border-bottom: 2px solid gray;
+}
+
+.doctorLoginForm a {
+    text-decoration: none;
+}
+
+.doctorLoginForm h6 {
+    line-height: 0px;
+}
+
+.btn-custom {
+    /* order: none; */
+    /* border-radius: 5px; */
+    color: white;
+    /* font-weight: bold; */
+    background-image: linear-gradient(to right, #11d0df, #19d3ae);
+    /* padding: 10px 20px; */
+}
+
+.error {
+    color: red;
+}

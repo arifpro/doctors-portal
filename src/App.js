@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import DoctorLogin from './components/DoctorLogin/DoctorLogin';
 import AddAppointment from './components/AddAppointment/AddAppointment';
+import Footer from './components/Footer/Footer';
 
 function App() {
   
@@ -15,10 +16,12 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Navbar/>
+            <Navbar />
             <Home />
+            <Footer />
           </Route>
           <Route path='/doctorLogin'>
+            <Navbar />
             <DoctorLogin />
           </Route>
           <Route path='/addAppointment'>

@@ -1,5 +1,6 @@
 .navbar {
     transition: all 0.4s;
+    /* position: fixed; */
 }
 
 .scrolled {

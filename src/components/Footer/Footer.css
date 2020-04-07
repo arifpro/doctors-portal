@@ -1,0 +1,32 @@
+/* .container{
+    height: 500px;
+} */
+
+.cusFooterContainer1 {
+    margin-top: 200px;
+    background-image: url('../../images/footer\ background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 540px;
+}
+
+.cusFooter {
+    padding-top: 100px;
+}
+
+.cusFooter h6 {
+    line-height: 30px;
+    color: #848b9f;
+}
+
+.cusFooter h5 {
+    padding-bottom: 20px;
+    font-weight: bold;
+    color: #5fc7c7;
+}
+
+footer {
+    /* padding-top: 300px; */
+    color: #848b9f;
+}
