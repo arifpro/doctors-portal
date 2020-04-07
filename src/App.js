@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Navbar />
+            <Navbar navColor="white" />
             <Home />
             <Footer />
           </Route>
@@ -25,7 +25,9 @@ function App() {
             <DoctorLogin />
           </Route>
           <Route path='/addAppointment'>
+            <Navbar />
             <AddAppointment />
+            <Footer />
           </Route>
           <Route path='/doctor/:pageName'></Route>
           <Route path='*'>

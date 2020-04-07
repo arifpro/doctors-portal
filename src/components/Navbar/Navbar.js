@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div>
             <header className="header">
@@ -47,17 +47,17 @@ const Navbar = () => {
                                 </li>
                                 <li className="nav-item">
                                     <a href="#" className="nav-link">
-                                        <span className="cusNavItem">Reviews</span>
+                                        <span style={{ color: props.navColor}}>Reviews</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a href="#" className="nav-link">
-                                        <span className="cusNavItem">Blog</span>
+                                        <span style={{ color: props.navColor }}>Blog</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a href="/contact" className="nav-link">
-                                        <span className="cusNavItem">Contact Us</span>
+                                        <span style={{ color: props.navColor }}>Contact Us</span>
                                     </a>
                                 </li>
                             </ul>

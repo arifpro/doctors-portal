@@ -1,0 +1,12 @@
+.customAppDiv3 img {
+    width: 150%;
+    margin-left: -300px;
+}
+
+.projectMainColor {
+    color: #5fc7c7;
+}
+
+.projectBoldText{
+    font-weight: bold;
+}

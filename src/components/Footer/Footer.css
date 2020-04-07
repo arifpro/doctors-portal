@@ -30,3 +30,10 @@ footer {
     /* padding-top: 300px; */
     color: #848b9f;
 }
+
+.footerSocialIcon li {
+    display: inline;
+    padding: 5px;
+    font-size: 40px;
+    color: #5fc7c7;
+}
