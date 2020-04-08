@@ -7,6 +7,35 @@
     color: #5fc7c7;
 }
 
-.projectBoldText{
+.projectBoldText {
     font-weight: bold;
 }
+
+.bookAppointmentBtn:hover {
+    background-image: linear-gradient(rgb(67, 107, 6), rgb(67, 107, 6));
+}
+
+.customAppointDiv {
+    box-shadow: 0 3px 5px 0px darkgray;
+}
+
+.customAppointDiv:hover {
+    box-shadow: 0 5px 10px 0px darkgray;
+    transform: scale(1.05);
+}
+
+.customAppointCard {
+    padding: 20px 10px;
+}
+
+.customAppointCard p {
+    color: gray;
+    font-size: 10px;
+}
+
+.customAppointCard h6 {
+    font-weight: bold;
+}
+
+/* React Prompt */
+

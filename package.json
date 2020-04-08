@@ -14,8 +14,10 @@
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-calendar": "^3.0.1",
+    "react-datepicker": "^2.14.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.3.1",
+    "react-popup": "^0.10.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },
