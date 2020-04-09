@@ -1,9 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Popup.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { loadStripe } from '@stripe/stripe-js';
+import { useForm } from 'react-hook-form';
 
 const Popup = (props) => {
+    const [appointmentId, setAppointmentId] = useState(null)
+
+
+
+    const handleSubmit = (data) => {
+        const formData = new FormData(data.target)
+        const patientDetails = {}
+        data.preventDefault()
+
+        for (let entry of formData.entries()) {
+            patientDetails[entry[0]] = entry[1]
+        }
+
+        
+        fetch('https://backend-doctors-portal.herokuapp.com/addAppointment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(patientDetails)
+        })
+            .then(res => res.json())
+            .then(order => {
+                setAppointmentId(order._id)
+                console.log(order._id);
+            })
+    }
+
+
+   
+
+
+
     return (
         <div className='addAppPopup'>
             <div className='addAppPopup_inner '>
@@ -21,7 +56,7 @@ const Popup = (props) => {
                     <br/>
 
 
-                    <form className="text-center">
+                    <form className="text-center" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <input
                                 type="text"
@@ -75,6 +110,16 @@ const Popup = (props) => {
                             <button type="submit" className="popupSendBtn">Send</button>
                         </div>
                     </form>
+                    <br/>
+                    {
+                        appointmentId && alert(`Thank you for submit your appointment. Your appointment id is: ${appointmentId}`)
+                    }
+                    {/* {
+                        appointmentId && <div>
+                            <h3>Thank you for submit your appointment</h3>
+                            <p>Your appointment id is: {appointmentId}</p>
+                        </div>
+                    } */}
 
 
                     {/* <br/>

@@ -264,7 +264,7 @@ const AddAppointment = () => {
                 <Popup
                     title= {title}
                     time = {time}
-                    date={selectedDate !== null ? selectedDate : dateFromId}
+                    date={ dateFromId}
                     closePopup={togglePopup.bind()}
                 />
                 : null
