@@ -37,8 +37,6 @@ const Popup = (props) => {
 
    
 
-
-
     return (
         <div className='addAppPopup'>
             <div className='addAppPopup_inner '>
