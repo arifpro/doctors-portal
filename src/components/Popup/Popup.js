@@ -9,9 +9,12 @@ const Popup = (props) => {
             <div className='addAppPopup_inner '>
                 <div className="container customPopupDiv">
                     
-                    <p className="text-right customCrossBtn" onClick={props.closePopup}>
-                        <FontAwesomeIcon icon={faWindowClose} />
-                    </p>
+                    <div className="text-right">
+                        <button className="customCrossBtn" onClick={props.closePopup}>
+                            {/* <FontAwesomeIcon icon={faWindowClose} /> */}
+                            X
+                        </button>
+                    </div>
                     
                     
                     <h5 className="text-center projectMainColor projectBoldText">{props.title}</h5>
@@ -21,11 +24,13 @@ const Popup = (props) => {
                     <form className="text-center">
                         <div className="form-group">
                             <input
-                                type="time"
+                                type="text"
                                 className="form-control"
                                 name="time"
                                 id="time"
                                 placeholder="Select Time"
+                                // value={props.time}
+                                defaultValue={props.time}
                             />
                         </div>
                         <div className="form-group">
@@ -62,6 +67,7 @@ const Popup = (props) => {
                                 name="date" 
                                 id="date" 
                                 placeholder="mm/dd/yy"
+                                // value={props.date}
                                 defaultValue={props.date}
                             />
                         </div>

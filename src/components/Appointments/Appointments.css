@@ -1,0 +1,6 @@
+.sideBarNav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, #2de6a2, #0fcfeb);
+}

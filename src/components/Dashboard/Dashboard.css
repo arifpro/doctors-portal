@@ -1,0 +1,41 @@
+.mainSidebar {
+    background-image: linear-gradient(to bottom, #2be4a8, #20dcc2);
+}
+
+.mainSidebar2 {
+    background-image: linear-gradient(to bottom, #2de6a2, #0fcfeb);
+}
+
+.mainSidebar div, span, svg {
+    color: white;
+    font-weight: 1000;
+}
+
+.dashOptions {
+    padding: 0px 15px;
+}
+
+.dashOptions h1 {
+    font-weight: 700;
+    font-size: 60px;
+}
+
+.dashOption1 {
+    background-color: #f1536e;
+}
+
+.projectColor {
+    color: #13d1d2;
+}
+
+.editBtn {
+    background-color: #ffd076;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-left: 5px;
+}
+
+

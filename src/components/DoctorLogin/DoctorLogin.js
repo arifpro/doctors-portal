@@ -1,27 +1,28 @@
 import React from 'react';
 import './DoctorLogin.css'
 import bgImg from '../../images/Group 140.png'
-import { useForm } from 'react-hook-form';
+import Navbar from '../Navbar/Navbar';
 
-const DoctorLogin = () => {
-    const { register, errors } = useForm();
+const DoctorLogin = ({ fakeAuth }) => {
+    
 
-    const onSubmitHandle = () => {
+    // const onSubmitHandle = () => {
         
-        const username = document.getElementById('username').value
-        const password = document.getElementById('password').value
+    //     const username = document.getElementById('username').value
+    //     const password = document.getElementById('password').value
 
-        console.log(username, "  ", password);
-        if(username=="admin" && password=="admin"){
-            window.location.replace("/doctor/dashboard");
-        }else{
-            alert('Wrong username and password. Please try again with username: "admin" and password: "admin"')
-            window.location.reload(true);
-            // window.location.href = window.location.href;
-        }
-    }
+    //     console.log(username, "  ", password);
+    //     if(username==="admin" && password==="admin"){
+    //         window.location.replace("/doctor/dashboard");
+    //     }else{
+    //         alert('Wrong username and password. Please try again with username: "admin" and password: "admin"')
+    //         window.location.reload(true);
+    //     }
+    // }
+    
     return (
         <div>
+            <Navbar />
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 d-flex align-items-center">
@@ -48,7 +49,7 @@ const DoctorLogin = () => {
                                     <br/>
 
                                     <div className="form-group">
-                                        <button className="btn btn-custom btn-block" type="submit" onClick={onSubmitHandle}>Sign In</button>
+                                        <button className="btn btn-custom btn-block" type="submit" onClick={fakeAuth}>Sign In</button>
                                     </div>
                                 </form>
 

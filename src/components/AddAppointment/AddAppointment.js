@@ -13,6 +13,8 @@ import Popup from '../Popup/Popup'
 
 const AddAppointment = () => {
     const [title, setTitle] = useState(null)
+    const [time, setTime] = useState(null)
+    // const [date, setDate] = useState(null)
     // const useStyles = makeStyles((theme) => ({
     //     container: {
     //         display: 'flex',
@@ -31,13 +33,25 @@ const AddAppointment = () => {
     //Date Picker
     const [selectedDate, setSelectedDate] = useState(null)
 
+    // let dateFromId = document.getElementById('setAppDate1').innerText
+    // console.log(dateFromId);
+
     // console.log(selectedDate);
     if (selectedDate !== null){
         const splitSelectedDate = String(selectedDate).split(' ')
-        // console.log(splitSelectedDate);
+        
         const finalDate = `${splitSelectedDate[1]} ${splitSelectedDate[2]}, ${splitSelectedDate[3]}   (${splitSelectedDate[5]})`
-        document.getElementById('setAppDate').innerText = finalDate
+        document.getElementById('setAppDate1').innerText = finalDate
+        console.log(finalDate);
+        // setDate(finalDate)
     }
+    
+    
+    const dateFromId0 = String(new Date()).split(' ')
+    const dateFromId = `${dateFromId0[1]} ${dateFromId0[2]}, ${dateFromId0[3]}   (${dateFromId0[5]})`
+    // console.log(dateFromId);
+    
+    
 
 
 
@@ -50,12 +64,14 @@ const AddAppointment = () => {
     }
 
 
-    const getFinalSelectedDate = () => {
-        return document.getElementById('setAppDate').innerText
-    }
+    // const getFinalSelectedDate = () => {
+    //     let dateFromId = document.getElementById('setAppDate1').innerText
+    //     console.log(dateFromId);
+    //     return dateFromId
+    // }
     
     
-    console.log(title);
+    // console.log(getFinalSelectedDate);
 
     
 
@@ -118,7 +134,7 @@ const AddAppointment = () => {
 
             <div className="container">
                 <br/><br/>
-                <h3 className="text-center projectMainColor projectBoldText">Available Appointments on <span id="setAppDate">April 10, 2020</span> </h3>
+                <h3 className="text-center projectMainColor projectBoldText">Available Appointments on <span id="setAppDate1">{dateFromId}</span> </h3>
                 <br /><br />
                 <div className="row">
                     <div className="col-md-4">
@@ -132,6 +148,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Teeth Orthodontics')
+                                            setTime("8:00 AM - 9:00 AM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -150,6 +167,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Cosmetic Dentistry')
+                                            setTime("10:05 AM - 11:30 AM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -168,6 +186,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Teeth Cleaning')
+                                            setTime("5:00 PM - 6:30 PM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -189,6 +208,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Cavity Protection')
+                                            setTime("7:00 AM - 8:30 AM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -207,6 +227,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Teeth Orthodontics')
+                                            setTime("8:00 AM - 9:00 AM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -225,6 +246,7 @@ const AddAppointment = () => {
                                         className="getAppointmentBtn bookAppointmentBtn"
                                         onClick={() => {
                                             setTitle('Teeth Orthodontics')
+                                            setTime("8:00 AM - 9:00 AM")
                                             togglePopup()
                                         }}
                                     >BOOK APPOINTMENT</button>
@@ -237,11 +259,12 @@ const AddAppointment = () => {
 
 
             {/* prompt */}
-            {showPopup ?
+            {
+                showPopup ?
                 <Popup
                     title= {title}
-                    date={getFinalSelectedDate}
-                    text='Click "Close Button" to hide popup'
+                    time = {time}
+                    date={selectedDate !== null ? selectedDate : dateFromId}
                     closePopup={togglePopup.bind()}
                 />
                 : null
