@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,20 +27,37 @@ function createData(name, gender, age, weight, contact, address) {
     return { name, gender, age, weight, contact, address };
 }
 
-const rows = [
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-    createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
-];
+// const rows = [
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+//     createData('Karim Ahmed', 'Male', '20', '50kg', '0123456789', 'South Gazirchar, Savar, Dhaka'),
+// ];
 
 const PatientsList = () => {
     const classes = useStyles();
     let rowCount = 0;
+
+    const [appointments, setAppointments] = useState([]);
+    useEffect(() => {
+        fetch('https://backend-doctors-portal.herokuapp.com/getAppointments')
+            .then(res => res.json())
+            .then(data => {
+                setAppointments(data)
+                console.log(data);
+            })
+    }, [])
+    const rows1 = [];
+    for (let i = 0; i < appointments.length; i++) {
+        const e = appointments[i];
+        const row1 = createData(e.name, e.gender, e.age, e.weight, e.phone, e.address)
+        rows1.push(row1)
+    }
+
     return (
 
         <TableContainer component={Paper}>
@@ -57,7 +74,7 @@ const PatientsList = () => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {rows.map((row) => (
+                {rows1.map((row) => (
                     <TableRow key={row.name}>
                         <TableCell style={{ fontWeight: 'bold' }} align="center">{rowCount += 1}</TableCell>
                         <TableCell style={{ fontWeight: 'bold' }} align="center">{row.name}</TableCell>

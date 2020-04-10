@@ -59,7 +59,7 @@ const AddAppointment = () => {
     const [showPopup, setShowPopup] = useState(false)
 
     const togglePopup = () => {
-        console.log('popup clicked')
+        // console.log('popup clicked')
         setShowPopup(!showPopup)
     }
 

@@ -108,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Appointments = () => {
+    let datePass
     //Date Picker
     const [selectedDate, setSelectedDate] = useState(null)
     if (selectedDate !== null) {
@@ -116,11 +117,13 @@ const Appointments = () => {
         const finalDate = `${splitSelectedDate[1]} ${splitSelectedDate[2]}, ${splitSelectedDate[3]}   (${splitSelectedDate[5]})`;
         document.getElementById('setAppDate1').innerText = finalDate
         // console.log(finalDate);
+        datePass = finalDate
     }
 
 
     const dateFromId0 = String(new Date()).split(' ')
     const dateFromId = `${dateFromId0[1]} ${dateFromId0[2]}, ${dateFromId0[3]}   (${dateFromId0[5]})`
+    datePass = dateFromId
 
 
     
@@ -135,6 +138,9 @@ const Appointments = () => {
         setOpen(false);
     };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+
+    
     return (
         <div className={classes.root} >
             <CssBaseline />
@@ -218,7 +224,7 @@ const Appointments = () => {
                                         {dateFromId}
                                     </div>
                                 </div>
-                                <AppointmentsItem />
+                                <AppointmentsItem datePass={datePass}/>
                             </Paper>
                         </Grid>
 

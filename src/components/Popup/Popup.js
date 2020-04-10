@@ -4,9 +4,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { loadStripe } from '@stripe/stripe-js';
 import { useForm } from 'react-hook-form';
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        border: '1px solid gray',
+    },
+}));
 
 const Popup = (props) => {
     const [appointmentId, setAppointmentId] = useState(null)
+
+    const classes = useStyles();
+    const [gender, setGender] = React.useState('');
+
+    const handleChange = (event) => {
+        setGender(event.target.value);
+    };
 
 
 
@@ -18,8 +40,11 @@ const Popup = (props) => {
         for (let entry of formData.entries()) {
             patientDetails[entry[0]] = entry[1]
         }
+        patientDetails['gender'] = gender
+        patientDetails['action'] = 'Pending'
+        patientDetails['action2'] = 'Not Visited'
 
-        
+        // console.log(patientDetails);
         fetch('https://backend-doctors-portal.herokuapp.com/addAppointment', {
             method: 'POST',
             headers: {
@@ -27,11 +52,11 @@ const Popup = (props) => {
             },
             body: JSON.stringify(patientDetails)
         })
-            .then(res => res.json())
-            .then(order => {
-                setAppointmentId(order._id)
-                console.log(order._id);
-            })
+        .then(res => res.json())
+        .then(data => {
+            setAppointmentId(data._id)
+            console.log(data._id);
+        })
     }
 
 
@@ -53,19 +78,9 @@ const Popup = (props) => {
                     <h5 className="text-center projectMainColor projectBoldText">{props.title}</h5>
                     <br/>
 
-
-                    <form className="text-center" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="time"
-                                id="time"
-                                placeholder="Select Time"
-                                // value={props.time}
-                                defaultValue={props.time}
-                            />
-                        </div>
+                    
+                    <form className="text-center" onSubmit={handleSubmit} id="input-wrapper">
+                        
                         <div className="form-group">
                             <input 
                                 type="text" 
@@ -75,6 +90,48 @@ const Popup = (props) => {
                                 placeholder="Your Name"
                             />
                         </div>
+
+                        <div class="d-flex justify-content-around">
+                            <div class="dropdown">
+                                <Select
+                                    value={gender}
+                                    onChange={handleChange}
+                                    displayEmpty
+                                    inputProps={{ 'aria-label': 'Without label' }}
+                                >
+                                    <MenuItem value="" disabled>
+                                        Gender
+                                        </MenuItem>
+                                    <MenuItem value={'male'}>Male</MenuItem>
+                                    <MenuItem value={'female'}>Female</MenuItem>
+                                    <MenuItem value={'other'}>Other</MenuItem>
+                                </Select>
+
+                                    
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="age"
+                                    id="age"
+                                    placeholder="Your Age"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="weight"
+                                    id="weight"
+                                    placeholder="Your Weight"
+                                />
+                            </div>
+                        </div>
+
+
+
+
                         <div className="form-group">
                             <input 
                                 type="text" 
@@ -94,20 +151,43 @@ const Popup = (props) => {
                             />
                         </div>
                         <div className="form-group">
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 className="form-control"
-                                name="date" 
-                                id="date" 
-                                placeholder="mm/dd/yy"
-                                // value={props.date}
-                                defaultValue={props.date}
+                                name="address"
+                                id="address"
+                                placeholder="Address"
                             />
+                        </div>
+                        <div class="d-flex justify-content-between" >
+                            <div className="form-group" style={{ width: '45%' }}>
+                                <input 
+                                    type="text" 
+                                    className="form-control"
+                                    name="date" 
+                                    id="date" 
+                                    placeholder="mm/dd/yy"
+                                    defaultValue={props.date}
+                                    readonly="readonly"
+                                />
+                            </div>
+                            <div className="form-group" style={{ width: '45%' }}>
+                                <input
+                                    type="text"
+                                    className="form-control center"
+                                    name="time"
+                                    id="time"
+                                    placeholder="Select Time"
+                                    defaultValue={props.time}
+                                    readonly="readonly"
+                                />
+                            </div>
                         </div>
                         <div className="text-right">
                             <button type="submit" className="popupSendBtn">Send</button>
                         </div>
                     </form>
+                    
                     <br/>
                     {
                         appointmentId && alert(`Thank you for submit your appointment. Your appointment id is: ${appointmentId}`)

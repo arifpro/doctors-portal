@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +14,7 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -23,6 +23,7 @@ import './Dashboard.css'
 import Home from '../Home/Home';
 import RecentAppointments from './RecentAppointments';
 import TodayIcon from '@material-ui/icons/Today';
+
 
 
 const Copyright = () => {
@@ -133,6 +134,39 @@ const Dashboard = () => {
     };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+
+    const [appointments, setAppointments] = useState([]);
+    useEffect(() => {
+        fetch('https://backend-doctors-portal.herokuapp.com/getAppointments')
+            .then(res => res.json())
+            .then(data => {
+                setAppointments(data)
+            })
+    }, [])
+    // const rows1 = [];
+    let countPending = 0
+    let countTodaysAppointments = 0
+    let totalAppointments = 0
+    let countTotalPatients = 0
+    const dateFromId0 = String(new Date()).split(' ')
+    const dateFromId = `${dateFromId0[1]} ${dateFromId0[2]}, ${dateFromId0[3]}   (${dateFromId0[5]})`
+    for (let i = 0; i < appointments.length; i++) {
+        const e = appointments[i];
+        if (e.action === 'Pending'){
+            countPending += 1
+        }
+        if (e.action === 'Approved'){
+            countTotalPatients += 1
+        }
+        if (e.date === dateFromId) {
+            countTodaysAppointments += 1
+        }
+        totalAppointments += 1
+        
+        // const row1 = createData(e.date, e.time, e.name, e.phone, 'View', e.action)
+        // rows1.push(row1)
+    }
+
     return (
         <div className={classes.root} >
             <CssBaseline />
@@ -178,7 +212,9 @@ const Dashboard = () => {
                      {/* <Divider /> */}
                     <List>{mainListItems}</List>
                         <div style={{ paddingTop: '45vh' }}>
-                            <List>{Logout}</List>
+                            {/* <Link to="/" style={{textDecoration:'none'}}> */}
+                                <List>{Logout}</List>
+                            {/* </Link> */}
                         </div>
                 </div>
                 </Drawer>
@@ -194,7 +230,7 @@ const Dashboard = () => {
                                 <Paper className={classes.paper} style={{ backgroundColor: '#f43253', color: 'white'}}>
                                     <div className="d-flex justify-content-center align-items-center ">
                                         <div className="dashOptions">
-                                            <h1>00</h1>
+                                            <h1>{countPending}</h1>
                                         </div>
                                         <div className="dashOptions">
                                             <h6>Pending</h6>
@@ -207,7 +243,7 @@ const Dashboard = () => {
                                 <Paper className={classes.paper} style={{ backgroundColor: '#3da5f4', color: 'white'}}>
                                     <div className="d-flex justify-content-center align-items-center ">
                                         <div className="dashOptions">
-                                            <h1>00</h1>
+                                            <h1>{countTodaysAppointments}</h1>
                                         </div>
                                         <div className="dashOptions">
                                             <h6>Today's</h6>
@@ -220,7 +256,7 @@ const Dashboard = () => {
                                 <Paper className={classes.paper} style={{ backgroundColor: '#00c689', color: 'white'}}>
                                     <div className="d-flex justify-content-center align-items-center ">
                                         <div className="dashOptions">
-                                            <h1>00</h1>
+                                            <h1>{totalAppointments}</h1>
                                         </div>
                                         <div className="dashOptions">
                                             <h6>Total</h6>
@@ -233,7 +269,7 @@ const Dashboard = () => {
                                 <Paper className={classes.paper} style={{ backgroundColor: '#fda006', color: 'white'}}>
                                     <div className="d-flex justify-content-center align-items-center ">
                                         <div className="dashOptions">
-                                            <h1>00</h1>
+                                            <h1>{countTotalPatients}</h1>
                                         </div>
                                         <div className="dashOptions">
                                             <h6>Total</h6>
@@ -277,7 +313,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                                 {/* <h4 className="projectColor">Recent Appointments</h4> */}
-                                {/* <br/> */}
+                                
                                 <RecentAppointments/>
                             </Paper>
                         </Grid>

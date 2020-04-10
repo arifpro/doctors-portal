@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import MainDrawer from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard/Dashboard';
 import DoctorLogin from '../DoctorLogin/DoctorLogin';
-import Appointments from '../Appointments/Appointments';
-
 
 const MaterialUI = () => {
     const [isAuth, setAuth] = useState(false)
@@ -13,11 +11,9 @@ const MaterialUI = () => {
     return (
         <>
             {
-                isAuth ? <MainDrawer /> : 
+                isAuth ? <Dashboard /> : 
                 <DoctorLogin fakeAuth={fakeAuth}/>
             }
-            {/* <Appointments /> */}
-
         </>
     );
 };

@@ -13,25 +13,25 @@ import {Link, Route } from 'react-router-dom';
 
 export const mainListItems = (
     <div>
-        <ListItem button component={Link} to="/doctor">
+        <ListItem button component={Link} to="/doctor/dashboard">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/doctor/appointments">
             <ListItemIcon>
                 <TodayIcon />
             </ListItemIcon>
-            <ListItemText primary="Appointment" />
+            <ListItemText primary="Appointments" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/doctor/patients">
             <ListItemIcon>
                 <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Patients" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/doctor/prescriptions">
             <ListItemIcon>
                 <DescriptionIcon />
             </ListItemIcon>
@@ -48,7 +48,7 @@ export const mainListItems = (
 
 export const Logout = (
     <div>
-        <ListItem button>
+        <ListItem button component={Link} to="/">
             <ListItemIcon>
                 <ExitToAppIcon />
             </ListItemIcon>

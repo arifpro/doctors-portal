@@ -42,7 +42,7 @@ const Navbar = (props) => {
                                 </li>
                                 <li className="nav-item">
                                     <a href="/doctorLogin" className="nav-link">
-                                        <span>Doctor Login</span>
+                                        <span style={{color: 'green'}}>Doctor Login</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
@@ -56,7 +56,7 @@ const Navbar = (props) => {
                                     </a>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="/contact" className="nav-link">
+                                    <a href="#" className="nav-link">
                                         <span style={{ color: props.navColor }}>Contact Us</span>
                                     </a>
                                 </li>

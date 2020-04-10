@@ -34,6 +34,10 @@ function App(props) {
 
           <Route path='/doctorLogin'>
             <MaterialUI />
+            {/* <DoctorLogin/> */}
+          </Route>
+          <Route path='/doctor/dashboard'>
+            <Dashboard/>
           </Route>
           <Route path='/doctor/appointments'>
             <Appointments/>

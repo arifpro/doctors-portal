@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,16 +27,37 @@ function createData(name, time, action) {
     return { name, time, action };
 }
 
-const rows = [
-    createData('Karim Ahmed', '7:00 PM', 'Not visited'),
-    createData('Karim Ahmed', '7:00 PM', 'Not visited'),
-    createData('Karim Ahmed', '7:00 PM', 'Not visited'),
-    createData('Karim Ahmed', '7:00 PM', 'Visited'),
-    createData('Karim Ahmed', '7:00 PM', 'Not visited'),
-];
+// const rows = [
+//     createData('Karim Ahmed', '7:00 PM', 'Not visited'),
+//     createData('Karim Ahmed', '7:00 PM', 'Not visited'),
+//     createData('Karim Ahmed', '7:00 PM', 'Not visited'),
+//     createData('Karim Ahmed', '7:00 PM', 'Visited'),
+//     createData('Karim Ahmed', '7:00 PM', 'Not visited'),
+// ];
 
-const AppointmentsItem = () => {
+const AppointmentsItem = (props) => {
+    
     const classes = useStyles();
+    const [appointments, setAppointments] = useState([]);
+    useEffect(() => {
+        fetch('https://backend-doctors-portal.herokuapp.com/getAppointments')
+            .then(res => res.json())
+            .then(data => {
+                setAppointments(data)
+                console.log(data);
+            })
+    }, [])
+    const rows1 = [];
+    for (let i = 0; i < appointments.length; i++) {
+        const e = appointments[i];
+        if (e.date === props.datePass){
+            const row1 = createData(e.name, e.time, e.action1)
+            rows1.push(row1)
+        }
+        
+        
+    }
+
     return (
         
         // <TableContainer component={Paper}>
@@ -49,7 +70,7 @@ const AppointmentsItem = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows1.map((row) => (
                         <TableRow key={row.name}>
                             <TableCell style={{ fontWeight: 'bold' }} align="center">{row.name}</TableCell>
                             <TableCell style={{ fontWeight: 'bold' }} align="center">{row.time}</TableCell>
@@ -65,7 +86,8 @@ const AppointmentsItem = () => {
                                                 aria-expanded="false"
                                                 style={{ backgroundImage: 'linear-gradient(#0e9a6a, #0e9a6a)' }}
                                             >
-                                                {row.action}
+                                                {/* {row.action} */}
+                                                Visited
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">Not Visited</a>
@@ -78,7 +100,8 @@ const AppointmentsItem = () => {
                                     : 
                                         <div class="dropdown">
                                             <button class="btn actionBtn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                {row.action}
+                                                {/* {row.action} */}
+                                                Not Visited
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="#">Visited</a>

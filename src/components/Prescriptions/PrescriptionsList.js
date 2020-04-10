@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -23,22 +23,50 @@ const useStyles = makeStyles({
     }
 });
 
-function createData(date, name, contact, prescription) {
-    return { date, name, contact, prescription };
+const rows = [];
+function createData(date, name, contact) {
+    return { date, name, contact };
 }
 
-const rows = [
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-    createData('27-02-2020', 'Karim Ahmed', '01700000000'),
-];
+// const rows = [
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+//     createData('27-02-2020', 'Karim Ahmed', '01700000000'),
+// ];
 
+
+fetch('https://backend-doctors-portal.herokuapp.com/getAppointments')
+.then(res => res.json())
+.then(data => {
+    for (let i = 0; i < data.length; i++) {
+        const e = data[i];
+        const row = createData(e.date, e.name, e.phone)
+        // console.log(row);
+        rows.push(row)
+        // console.log(rows);
+    }
+})
+// console.log(rows);
 const PrescriptionsList = () => {
     const classes = useStyles();
     let rowCount = 0;
+    const [appointments, setAppointments] = useState([]);
+    useEffect(() => {
+        fetch('https://backend-doctors-portal.herokuapp.com/getAppointments')
+            .then(res => res.json())
+            .then(data => {
+                setAppointments(data)
+            })
+    }, [])
+    const rows1 = [];
+    for (let i = 0; i < appointments.length; i++) {
+        const e = appointments[i];
+        const row1 = createData(e.date, e.time, e.name, e.phone, 'View', 'Pending')
+        rows1.push(row1)
+    }
     return (
 
         <TableContainer component={Paper}>
@@ -53,7 +81,7 @@ const PrescriptionsList = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows1.map((row) => (
                         <TableRow key={row.name}>
                             <TableCell style={{ fontWeight: 'bold' }} align="center">{rowCount += 1}</TableCell>
                             <TableCell style={{ fontWeight: 'bold' }} align="center">{row.date}</TableCell>

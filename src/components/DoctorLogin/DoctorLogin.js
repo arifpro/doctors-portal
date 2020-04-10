@@ -4,7 +4,6 @@ import bgImg from '../../images/Group 140.png'
 import Navbar from '../Navbar/Navbar';
 
 const DoctorLogin = ({ fakeAuth }) => {
-    
 
     // const onSubmitHandle = () => {
         
