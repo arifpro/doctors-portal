@@ -4,3 +4,12 @@
     bottom: 0;
     background-image: linear-gradient(to bottom, #2de6a2, #0fcfeb);
 }
+
+.actionBtn {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom, #2ee7a0, #0fcfea);
+    padding: 10px 20px;
+}

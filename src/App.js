@@ -9,6 +9,8 @@ import AddAppointment from './components/AddAppointment/AddAppointment';
 import Footer from './components/Footer/Footer';
 import Dashboard from './components/Dashboard/Dashboard';
 import MaterialUI from './components/MaterialUI/MaterialUI';
+import Patients from './components/Patients/Patients';
+import Prescriptions from './components/Prescriptions/Prescriptions';
 
 
 // import Contact from './components/MaterialUI/pages/Contact';
@@ -28,19 +30,22 @@ function App(props) {
             <Footer />
           </Route>
 
-          {/* <Route path='/doctor'>
-            <Dashboard>
-              
-            </Dashboard>
-          </Route> */}
-
-          {/* <Route path="/doctor" component={HomePage} />;
-          <Route path="/doctor/contact" component={Contact} />;
-          <Route path="/doctor/customers" component={Customers} />; */}
+          
 
           <Route path='/doctorLogin'>
             <MaterialUI />
           </Route>
+          <Route path='/doctor/appointments'>
+            <Appointments/>
+          </Route>
+          <Route path='/doctor/patients'>
+            <Patients/>
+          </Route>
+          <Route path='/doctor/prescriptions'>
+            <Prescriptions/>
+          </Route>
+
+
           <Route path='/addAppointment'>
             <Navbar />
             <AddAppointment />
@@ -49,7 +54,7 @@ function App(props) {
 
           
 
-          <Route path='/doctor/:pageName'></Route>
+          {/* <Route path='/doctor/:pageName'></Route> */}
           <Route path='*'>
             <h1>Page not found</h1>
           </Route>

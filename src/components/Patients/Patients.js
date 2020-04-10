@@ -14,11 +14,11 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import { mainListItems, Logout } from '../Dashboard/listItems';
-import './Appointments.css'
+import './Patients.css'
 import TodayIcon from '@material-ui/icons/Today';
-import AppointmentsItem from './AppointmentsItem';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PatientsList from './PatientsList';
 
 
 
@@ -107,25 +107,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Appointments = () => {
-    //Date Picker
-    const [selectedDate, setSelectedDate] = useState(null)
-    if (selectedDate !== null) {
-        const splitSelectedDate = String(selectedDate).split(' ')
-
-        const finalDate = `${splitSelectedDate[1]} ${splitSelectedDate[2]}, ${splitSelectedDate[3]}   (${splitSelectedDate[5]})`;
-        document.getElementById('setAppDate1').innerText = finalDate
-        // console.log(finalDate);
-    }
-
-
-    const dateFromId0 = String(new Date()).split(' ')
-    const dateFromId = `${dateFromId0[1]} ${dateFromId0[2]}, ${dateFromId0[3]}   (${dateFromId0[5]})`
-
-
-    
-
-
+const Patients = () => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -135,11 +117,13 @@ const Appointments = () => {
         setOpen(false);
     };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+
     return (
         <div className={classes.root} >
             <CssBaseline />
 
-            <AppBar  position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         edge="start"
@@ -150,8 +134,8 @@ const Appointments = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography  component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                        Appointments
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                        Patients
                         </Typography>
                 </Toolbar>
             </AppBar>
@@ -183,45 +167,39 @@ const Appointments = () => {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-
-                    
-
-
                     <Grid container spacing={3}>
-
-                        <Grid item xs={12} md={6} lg={6}>
-                            <Paper className={fixedHeightPaper}>
-                                
-                                <DatePicker
-                                    placeholderText='Pick a Date'
-                                    selected={selectedDate}
-                                    onChange={date => setSelectedDate(date)}
-                                    dateFormat='dd/MM/yyyy'
-                                    // dateFormat='Pp'
-                                    minDate={new Date()}
-                                    // maxDate={new Date()}
-                                    // filterDate={date => date.getDay() !== 6 && date.getDay() !== 0} 
-                                    isClearable
-                                    showYearDropdown
-                                    scrollableMonthYearDropdown
-                                />
-
-                            </Paper>
-                        </Grid>
-
-                        <Grid item xs={12} md={6} lg={6}>
+                        <Grid item xs={12} md={12} lg={12}>
                             <Paper className={fixedHeightPaper}>
                                 <div className="d-flex bd-highlight mb-3">
-                                    <div className="mr-auto p-2 bd-highlight projectColor projectBoldText">Appointments</div>
-                                    <div className="p-2 bd-highlight" style={{ color: '#8b8888' }} id="setAppDate1">
-                                        
-                                        {dateFromId}
+                                    <div className="mr-auto p-2 bd-highlight projectColor projectBoldText">
+                                        All Patients
+                                    </div>
+                                    <div className="p-2 bd-highlight" style={{ color: '#8b8888' }} id="setPresWeek">
+                                        <div class="dropdown">
+                                            <a className="btn  dropdown-toggle"
+                                                href="#/"
+                                                role="button"
+                                                id="dropdownMenuLink"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false"
+                                                style={{ border: '1px solid gray' }}
+                                            >
+                                                <span><TodayIcon /></span>  | Week
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a className="dropdown-item" href="#/">First</a>
+                                                <a className="dropdown-item" href="#/">Second</a>
+                                                <a className="dropdown-item" href="#/">Third</a>
+                                                <a className="dropdown-item" href="#/">Fourth</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <AppointmentsItem />
+                                <PatientsList/>
                             </Paper>
                         </Grid>
-
                     </Grid>
                 </Container>
             </main>
@@ -229,4 +207,4 @@ const Appointments = () => {
     );
 };
 
-export default Appointments;
+export default Patients;

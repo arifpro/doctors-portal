@@ -262,6 +262,7 @@ const Dashboard = () => {
                                                 data-toggle="dropdown" 
                                                 aria-haspopup="true" 
                                                 aria-expanded="false"
+                                                style={{ border: '1px solid gray'}}
                                             >
                                                 <span style={{ backgroundColor: 'black !important' }}><TodayIcon /></span>  | Week
                                             </a>
