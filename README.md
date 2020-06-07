@@ -1,3 +1,60 @@
+# Doctor's Portal
+Dashboard of doctor for analyzing appointments & making prescriptions  
+- Patients can place their appointment with the doctor.
+- Doctor can review the appointment, reject the appointment. 
+- Doctor can prescribe medicine to a particular patient. 
+
+## Deployment
+This website is deployed on Firebase.
+
+## Screenshots
+
+### Home
+![alt text](https://i.ibb.co/XJyFVQP/doctors-portal-1.png)
+
+### Appointment page
+![alt text](https://i.ibb.co/qx4k0F3/doctors-portal-2.png)
+
+### Add appointment
+![alt text](https://i.ibb.co/x2fPs1C/doctors-portal-3.png)
+
+### Successful message
+![alt text](https://i.ibb.co/PjS4pCR/doctors-portal-4.png)
+
+### Doctor login page
+![alt text](https://i.ibb.co/vkxWdy0/doctors-portal-5.png)
+
+### Dashboard
+![alt text](https://i.ibb.co/WxXVfrF/doctors-portal-6.png)
+
+### Edit page
+![alt text](https://i.ibb.co/q5rwCTP/doctors-portal-7.png)
+
+### Appointment list
+![alt text](https://i.ibb.co/SfqnPV2/doctors-portal-8.png)
+
+### Prescription list
+![alt text](https://i.ibb.co/r7tCB3X/doctors-portal-9.png)
+
+
+
+
+
+## Tech/framework used
+- React
+- Node.js
+- MongoDB
+- Material-UI
+- HTML
+- CSS 
+- BOOTSTRAP
+- Firebase Hosting.
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
